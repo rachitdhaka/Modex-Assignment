@@ -31,7 +31,7 @@ export default function MyBookingsPage() {
     const fetchBookings = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/bookings?email=${user?.email}`);
+        const response = await fetch(`https://modex-backend-71wr.onrender.com/api/bookings?email=${user?.email}`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch bookings');
