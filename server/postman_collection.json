@@ -1,0 +1,146 @@
+{
+  "info": {
+    "name": "Booker Backend API",
+    "description": "Ticket booking system API with concurrency handling",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Shows",
+      "item": [
+        {
+          "name": "Get All Shows",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/shows",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shows"]
+            }
+          }
+        },
+        {
+          "name": "Get Available Shows",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/shows/available",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shows", "available"]
+            }
+          }
+        },
+        {
+          "name": "Get Show by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/shows/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shows", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Show",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Interstellar - IMAX\",\n  \"startTime\": \"2025-12-15T20:00:00Z\",\n  \"totalSeats\": 50\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shows",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shows"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"showId\": 1,\n  \"userEmail\": \"john@example.com\",\n  \"seatsCount\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings"]
+            }
+          }
+        },
+        {
+          "name": "Get Booking by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get User Bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/bookings?email=john@example.com",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings"],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "john@example.com"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
