@@ -12,7 +12,24 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // middleware
-app.use(cors());
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      /^https:\/\/[a-zA-Z0-9-]+\.vercel\.app$/, // *.vercel.app
+      /^http:\/\/localhost(:\d+)?$/, // localhost with optional port
+      /^http:\/\/127\.0\.0\.1(:\d+)?$/, // 127.0.0.1 with optional port
+    ];
+    
+    if (!origin || allowedOrigins.some(pattern => pattern.test(origin))) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // health check - always good to have one
