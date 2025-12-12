@@ -21,7 +21,7 @@ export interface BookingResponse {
   error?: string;
 }
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = "https://modex-backend-71wr.onrender.com/api";
 
 // Helper function to get auth token
 const getAuthHeaders = (): HeadersInit => {
